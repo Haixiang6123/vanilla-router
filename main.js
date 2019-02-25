@@ -1,30 +1,44 @@
-// Get number
-let number = window.location.hash.substring(1)
+const div1 = document.createElement('div')
+div1.innerHTML = '1'
+const div2 = document.createElement('div')
+div2.innerHTML = '2'
+const div3 = document.createElement('div')
+div3.innerHTML = '3'
+const div4 = document.createElement('div')
+div4.innerHTML = '4'
 
-// Get corresponding div
-let div = document.querySelector(`#div${number}`)
-div.style.display = 'block'
+const routeTable = {
+    '1': div1,
+    '2': div2,
+    '3': div3,
+    '4': div4
+}
 
-// Get app
-let app = document.querySelector('#app')
-
-// Show this div
-app.appendChild(div)
-
-window.addEventListener('hashchange', (event) => {
+function routing() {
     // Get number
-    number = window.location.hash.substring(1)
+    let number = window.location.hash.substring(1)
+    // Get app
+    let app = document.querySelector('#app')
+
+    number = number || 1
 
     // Get corresponding div
-    div = document.querySelector(`#div${number}`)
+
+    let div = routeTable[number]
+    console.log(div)
+    if (!div) {
+        div = document.querySelector('#div404')
+    }
     div.style.display = 'block'
 
-    // Get app
-    app = document.querySelector('#app')
-
-    app.children[0].style.display = 'none'
-    document.body.appendChild(app.children[0])
-
+    // Show this div
+    app.innerHTML = ''
     // Show this div
     app.appendChild(div)
+}
+
+routing()
+
+window.addEventListener('hashchange', (event) => {
+    routing()
 })
