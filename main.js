@@ -6,6 +6,8 @@ const div3 = document.createElement('div')
 div3.innerHTML = '3'
 const div4 = document.createElement('div')
 div4.innerHTML = '4'
+const div404 = document.createElement('div')
+div404.innerHTML = '404'
 
 const routeTable = {
     '1': div1,
@@ -23,13 +25,7 @@ function routing() {
     number = number || 1
 
     // Get corresponding div
-
-    let div = routeTable[number]
-    console.log(div)
-    if (!div) {
-        div = document.querySelector('#div404')
-    }
-    div.style.display = 'block'
+    let div = routeTable[number] || div404
 
     // Show this div
     app.innerHTML = ''
