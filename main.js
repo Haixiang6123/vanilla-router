@@ -36,7 +36,9 @@ function routing(root) {
     // let number = window.location.hash.substring(1)
     let number = window.location.pathname
 
-    number = number || 1
+    if (number === '/') {
+        number = '/1'
+    }
 
     // Get corresponding div
     let div = routeTable[number] || div404
